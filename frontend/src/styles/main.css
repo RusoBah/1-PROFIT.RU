@@ -1,9 +1,53 @@
 @import './variables.css';
 
+@font-face {
+  font-family: 'Tilda Sans';
+  src:
+    url('../fonts/TildaSans-VF.woff2') format('woff2'),
+    url('../fonts/TildaSans-VF.woff') format('woff'),
+    url('../fonts/TildaSans-VF.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../fonts/MontserratAlternates-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../fonts/MontserratAlternates-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../fonts/MontserratAlternates-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../fonts/MontserratAlternates-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+
 }
 
 html {
@@ -12,7 +56,7 @@ html {
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-primary);
   color: var(--color-text);
   background: var(--color-white);
 }

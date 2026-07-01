@@ -1,5 +1,8 @@
 
 :root {
+  --font-primary: 'Tilda Sans', Arial, sans-serif;
+  --font-accent: 'Montserrat Alternates', Arial, sans-serif;
+
   --color-primary: #332b8c;
   --color-primary-dark: #282066;
   --color-yellow: #ffe12d;
