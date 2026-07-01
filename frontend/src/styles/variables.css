@@ -1,1 +1,14 @@
 
+:root {
+  --color-primary: #332b8c;
+  --color-primary-dark: #282066;
+  --color-yellow: #ffe12d;
+  --color-yellow-hover: #ffd600;
+  --color-bg-light: #f4f6fb;
+  --color-white: #ffffff;
+  --color-text: #2d2d3a;
+
+  --container-width: 1200px;
+  --border-radius-card: 24px;
+  --border-radius-button: 10px;
+}
