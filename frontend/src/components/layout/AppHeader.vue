@@ -2,6 +2,7 @@
 import logoIcon from '@/assets/icons/logo.png'
 import phoneIcon from '@/assets/icons/Phone.svg'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import NavSection from '@/components/sections/NavSection.vue'
 
 function scrollToContact() {
   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
@@ -9,31 +10,38 @@ function scrollToContact() {
 </script>
 
 <template>
-  <header class="app-header">
-    <div class="container app-header__inner">
-      <a class="app-header__logo" href="#top" aria-label="Prof IT">
-        <img :src="logoIcon" alt="Prof IT" />
-      </a>
-
-      <div class="app-header__actions">
-        <a class="app-header__phone" href="tel:+79374380895">
-          <img :src="phoneIcon" alt="Phone" class="app-header__phone-icon" />
-          <span>+7 937 438 08 95</span>
+  <div class="app-header-wrapper">
+    <header class="app-header">
+      <div class="container app-header__inner">
+        <a class="app-header__logo" href="#top" aria-label="Prof IT">
+          <img :src="logoIcon" alt="Prof IT" />
         </a>
 
-        <BaseButton class="app-header__button" @click="scrollToContact">
-          Оставить заявку
-        </BaseButton>
+        <div class="app-header__actions">
+          <a class="app-header__phone" href="tel:+79374380895">
+            <img :src="phoneIcon" alt="" class="app-header__phone-icon" aria-hidden="true" />
+            <span>+7 937 438 08 95</span>
+          </a>
+
+          <BaseButton class="app-header__button" @click="scrollToContact">
+            Оставить заявку
+          </BaseButton>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+
+    <NavSection />
+  </div>
 </template>
 
 <style scoped>
-.app-header {
+.app-header-wrapper {
   position: sticky;
   top: 0;
   z-index: 20;
+}
+
+.app-header {
   background: var(--color-white);
 }
 
@@ -75,7 +83,6 @@ function scrollToContact() {
 
 .app-header__phone-icon {
   display: inline-flex;
-  
   align-items: center;
   justify-content: center;
   border-radius: 50%;
