@@ -13,13 +13,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
-<<<<<<< HEAD
     "vue": "^3.5.38"
-=======
-    "pinia": "^3.0.4",
-    "vue": "^3.5.38",
-    "vue-router": "^5.1.0"
->>>>>>> dev
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
