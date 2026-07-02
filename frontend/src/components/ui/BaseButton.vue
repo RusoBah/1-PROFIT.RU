@@ -19,9 +19,11 @@ const emits = defineEmits(["click"]);
 .base-button {
   background-color: var(--color-yellow);
   border: none;
-  padding: 16px 30px;
+  min-height: 58px;
+  padding: 16px 28px;
+  border-radius: 8px;
   color: var(--color-primary-dark);
-  font-size: 18px;
+  font-size: 17px;
   align-items: center;
   justify-content: center;
   font-family: var(--font-primary);
