@@ -5,6 +5,7 @@ import HeroSection from './components/sections/HeroSection.vue'
 import AboutSection from './components/sections/AboutSection.vue'
 import ProblemsSection from './components/sections/ProblemsSection.vue'
 import CasesSection from './components/sections/CasesSection.vue'
+import DirectionsSection from './components/sections/DirectionsSection.vue'
 import ProcessSection from './components/sections/ProcessSection.vue'
 import ContactSection from './components/sections/ContactSection.vue'
 </script>
@@ -17,6 +18,7 @@ import ContactSection from './components/sections/ContactSection.vue'
     <ProblemsSection />
     <AboutSection />
     <CasesSection />
+    <DirectionsSection />
     <ProcessSection />
     <ContactSection />
   </main>
