@@ -1,89 +1,142 @@
 <script setup>
+import { handleError, reactive } from 'vue'
+
 import formLogo from '@/assets/icons/form-logo.svg'
 import formPerson from '@/assets/icons/form-person.png'
+
+const form = reactive({
+  name: '',
+  phone: '',
+  consent: true,
+})
+
+const errors = reactive({
+  name: '',
+  phone: '',
+  consent: '',
+})
+
+const validateForm = () => {
+  errors.name = form.name.trim() === '' ? 'Пожалуйста, введите ваше имя или организацию.' : ''
+
+  if (!form.phone.trim()) {
+    errors.phone = 'Введите номер телефона'
+  } else if (!/^[\d\s()+-]{10,20}$/.test(form.phone)) {
+    errors.phone = 'Введите корректный номер телефона'
+  }
+
+  errors.consent = !formData.consent
+    ? 'Пожалуйста, дайте согласие на обработку персональных данных.'
+    : ''
+
+  return !errors.name && !errors.phone && !errors.consent
+}
+
+const handleSubmit = () => {
+  if (validateForm()) {
+    // Здесь можно отправить данные формы на сервер или выполнить другие действия
+    console.log('Форма успешно отправлена:', form)
+  } else {
+    console.log('Ошибка валидации формы:', errors)
+  }
+}
 </script>
 
 <template>
   <section id="contact" class="contact-banner">
-    <img
-      class="contact-banner__logo"
-      :src="formLogo"
-      alt=""
-      aria-hidden="true"
-    >
+    <img class="contact-banner__logo" :src="formLogo" alt="" aria-hidden="true" />
 
     <div class="container contact-banner__container">
       <div class="contact-banner__content">
-        <h2 class="contact-banner__title">
-          Давайте начнем!
-        </h2>
+        <h2 class="contact-banner__title">Давайте начнем!</h2>
 
         <p class="contact-banner__text">
-          Получите бесплатный аудит или запросите консультацию,<br>
+          Получите бесплатный аудит или запросите консультацию,<br />
           чтобы узнать, как мы можем помочь вашему бизнесу.
         </p>
 
-        <form class="contact-form" @submit.prevent>
+        <form class="contact-form" @submit.prevent="handleSubmit">
           <div class="contact-form__fields">
             <label class="contact-form__field">
               <span class="contact-form__label">Ваше имя / Организация *</span>
               <input
+                v-model.trim="form.name"
                 class="contact-form__input"
                 type="text"
                 name="name"
                 placeholder="Ваше имя / Организация *"
                 autocomplete="name"
-                required
-              >
+              />
+
+              <span v-if="errors.name" class="contact-form__error">
+                {{ errors.name }}
+              </span>
             </label>
 
             <label class="contact-form__field">
               <span class="contact-form__label">Номер телефона *</span>
               <input
+                v-model.trim="form.phone"
                 class="contact-form__input"
                 type="tel"
                 name="phone"
                 placeholder="Номер телефона *"
                 autocomplete="tel"
-                required
-              >
+              />
+
+              <span v-if="errors.phone" class="contact-form__error">
+                {{ errors.phone }}
+              </span>
             </label>
 
-            <button class="contact-form__submit" type="submit">
-              Получить консультацию
-            </button>
+            <button class="contact-form__submit" type="submit">Получить консультацию</button>
           </div>
 
           <label class="contact-form__consent">
             <input
+              v-model="form.consent"
               class="contact-form__checkbox"
               type="checkbox"
               name="consent"
-              checked
-              required
-            >
+            />
+
+            <span v-if="errors.consent" class="contact-form__error contact-form__error--consent">
+              {{ errors.consent }}
+            </span>
 
             <span>
-              Нажимая кнопку, вы даете согласие на
-              <a href="/privacy" target="_blank" rel="noopener">обработку персональных данных</a>
+              Я даю согласие на обработку персональных данных в соответствии с
+              <a href="/privacy-policy" target="_blank">Политикой конфиденциальности</a>.
             </span>
           </label>
         </form>
       </div>
-
     </div>
 
     <div class="contact-banner__image-wrap" aria-hidden="true">
-      <img
-        class="contact-banner__image"
-        :src="formPerson"
-        alt=""
-      >
+      <img class="contact-banner__image" :src="formPerson" alt="" />
     </div>
   </section>
 </template>
 
 <style scoped>
+
+.contact-form__field {
+  display: grid;
+  gap: 6px;
+}
+
+.contact-form__error {
+  color: var(--color-yellow);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.contact-form__input--error {
+  border-color: var(--color-yellow);
+}
+
 .contact-banner {
   position: relative;
   overflow: hidden;
@@ -175,7 +228,9 @@ import formPerson from '@/assets/icons/form-person.png'
   font-size: 17px;
   line-height: 1.2;
 
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .contact-form__input::placeholder {
@@ -207,7 +262,9 @@ import formPerson from '@/assets/icons/form-person.png'
   line-height: 1.2;
   cursor: pointer;
 
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .contact-form__submit:hover {
