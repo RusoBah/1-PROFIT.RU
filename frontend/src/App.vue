@@ -8,6 +8,7 @@ import CasesSection from './components/sections/CasesSection.vue'
 import DirectionsSection from './components/sections/DirectionsSection.vue'
 import ProcessSection from './components/sections/ProcessSection.vue'
 import ContactSection from './components/sections/ContactSection.vue'
+import SoftwareSection from './components/sections/SoftwareSection.vue'
 </script>
 
 <template>
@@ -20,6 +21,7 @@ import ContactSection from './components/sections/ContactSection.vue'
     <CasesSection />
     <DirectionsSection />
     <ProcessSection />
+    <SoftwareSection />
     <ContactSection />
   </main>
 
