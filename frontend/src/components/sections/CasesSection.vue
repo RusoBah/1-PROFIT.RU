@@ -11,10 +11,12 @@ import { cases } from '../../data/cases'
 
 import ArrowButton from '../ui/ArrowButton.vue'
 import CaseCard from '../ui/CaseCard.vue'
+import CaseModal from '../ui/CaseModal.vue'
 
 const modules = [Pagination, A11y]
 
 const swiperInstance = ref(null)
+const selectedCase = ref(null)
 
 function onSwiper(swiper) {
   swiperInstance.value = swiper
@@ -29,7 +31,11 @@ function nextSlide() {
 }
 
 function openCase(caseItem) {
-  console.log('Открываем кейс:', caseItem)
+  selectedCase.value = caseItem
+}
+
+function closeCase() {
+  selectedCase.value = null
 }
 </script>
 
@@ -88,6 +94,11 @@ function openCase(caseItem) {
 
       <div class="cases__pagination"></div>
     </div>
+
+    <CaseModal
+      :case-item="selectedCase"
+      @close="closeCase"
+    />
   </section>
 </template>
 
