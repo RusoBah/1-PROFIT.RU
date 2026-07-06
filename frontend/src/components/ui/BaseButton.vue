@@ -17,6 +17,9 @@ const emits = defineEmits(["click"]);
 
 <style scoped>
 .base-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--color-yellow);
   border: none;
   min-height: 58px;
@@ -24,11 +27,8 @@ const emits = defineEmits(["click"]);
   border-radius: 8px;
   color: var(--color-primary-dark);
   font-size: 17px;
-  align-items: center;
-  justify-content: center;
   font-family: var(--font-primary);
   font-weight: 700;
-  font-style: bold;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }

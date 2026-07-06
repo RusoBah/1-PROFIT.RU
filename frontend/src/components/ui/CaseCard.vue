@@ -17,7 +17,11 @@ const emit = defineEmits(['open'])
     <img
       class="case-card__image"
       :src="caseItem.image"
-      :alt="caseItem.title"
+      :alt="caseItem.imageAlt || caseItem.title"
+      width="500"
+      height="300"
+      loading="lazy"
+      decoding="async"
     >
 
     <div class="case-card__header">
@@ -34,7 +38,7 @@ const emit = defineEmits(['open'])
       {{ caseItem.description }}
     </p>
 
-    <BaseButton @click="emit('open', caseItem)">
+    <BaseButton class="case-card__button" @click="emit('open', caseItem)">
       Смотреть кейс
     </BaseButton>
   </article>
@@ -42,6 +46,8 @@ const emit = defineEmits(['open'])
 
 <style scoped>
 .case-card {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 40px 42px;
   border-radius: 24px;
@@ -85,6 +91,11 @@ const emit = defineEmits(['open'])
   color: var(--color-text);
   font-size: 17px;
   line-height: 1.5;
+}
+
+.case-card__button {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 @media (max-width: 560px) {

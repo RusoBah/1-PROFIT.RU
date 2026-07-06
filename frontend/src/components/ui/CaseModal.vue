@@ -81,7 +81,11 @@ onBeforeUnmount(() => {
           <img
             class="case-modal__image"
             :src="caseItem.image"
-            :alt="caseItem.title"
+            :alt="caseItem.imageAlt || caseItem.title"
+            width="500"
+            height="300"
+            loading="lazy"
+            decoding="async"
           >
         </div>
 

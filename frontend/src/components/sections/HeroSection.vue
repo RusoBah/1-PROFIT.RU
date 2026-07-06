@@ -1,30 +1,6 @@
 <script setup>
-import heroImage from "@/assets/images/hero-1c.png";
-
-import serviceSettingIcon from "@/assets/icons/setting-icon.png";
-import serviceCodeIcon from "@/assets/icons/code-icon.png";
-import serviceSaleIcon from "@/assets/icons/sale-icon.png";
-
-const services = [
-  {
-    id: 1,
-    title: "Обслуживание",
-    text: "Автоматизируйте ваши бизнес-процессы легко!",
-    icon: serviceSettingIcon,
-  },
-  {
-    id: 2,
-    title: "Доработка",
-    text: "Мы внедряем и дорабатываем 1С, интегрируя её с вашими сайтами, сервисами и оборудованием.",
-    icon: serviceCodeIcon,
-  },
-  {
-    id: 3,
-    title: "Продажа",
-    text: "Получите бесплатный аудит — оптимизируйте работууже сегодня!",
-    icon: serviceSaleIcon,
-  },
-];
+import heroImage from '@/assets/images/hero-1c.png'
+import { heroServices } from '@/data/heroServices'
 </script>
 
 <template>
@@ -42,12 +18,19 @@ const services = [
           </p>
         </div>
         <div class="hero__image">
-          <img :src="heroImage" alt="Hero Image" />
+          <img
+            :src="heroImage"
+            alt="Интерфейс 1С для автоматизации бизнеса"
+            width="569"
+            height="409"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
       </div>
     </div>
     <div class="container hero__services">
-      <article v-for="service in services" :key="service.id" class="hero-card">
+      <article v-for="service in heroServices" :key="service.id" class="hero-card">
         <div class="hero-card__content">
           <h2 class="hero-card__title">
             {{ service.title }}
@@ -58,7 +41,15 @@ const services = [
           </p>
         </div>
 
-        <img class="hero-card__icon" :src="service.icon" :alt="service.title" />
+        <img
+          class="hero-card__icon"
+          :src="service.icon"
+          :alt="service.title"
+          width="78"
+          height="78"
+          loading="lazy"
+          decoding="async"
+        />
       </article>
     </div>
   </section>

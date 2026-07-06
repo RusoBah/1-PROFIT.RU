@@ -81,7 +81,7 @@ const advantageRows = [
 </script>
 
 <template>
-  <section class="about section">
+  <section id="advantages" class="about section">
     <div class="container">
       <h2 class="about__title">Преимущества работы с нами</h2>
 
@@ -103,7 +103,15 @@ const advantageRows = [
             </article>
           </div>
 
-          <img class="about__image" :src="row.image" :alt="row.imageAlt" />
+          <img
+            class="about__image"
+            :src="row.image"
+            :alt="row.imageAlt"
+            width="330"
+            height="330"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </div>

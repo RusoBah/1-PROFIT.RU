@@ -1,38 +1,5 @@
 <script setup>
-const menuItems = [
-  {
-    title: "О нас",
-    href: "#about",
-  },
-  {
-    title: "Преимущества",
-    href: "#advantages",
-  },
-  {
-    title: "Услуги",
-    href: "#services",
-  },
-  {
-    title: "Тарифы",
-    href: "#tariffs",
-  },
-  {
-    title: "Портфолио и кейсы",
-    href: "#cases",
-  },
-  {
-    title: "Отзывы",
-    href: "#reviews",
-  },
-  {
-    title: "Экспертные материалы",
-    href: "#materials",
-  },
-  {
-    title: "Контакты",
-    href: "#contacts",
-  },
-];
+import { menuItems } from '@/data/navigation'
 </script>
 
 <template>
@@ -64,7 +31,7 @@ const menuItems = [
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 54px;
+  gap: clamp(20px, 4.2vw, 54px);
   min-height: 52px;
   margin: 0;
   padding: 0;
@@ -87,7 +54,7 @@ const menuItems = [
 
 @media (max-width: 1200px) {
   .nav-section__list {
-    gap: 32px;
+    gap: 28px;
   }
 
   .nav-section__link {

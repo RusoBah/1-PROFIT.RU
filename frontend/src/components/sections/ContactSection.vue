@@ -1,5 +1,5 @@
 <script setup>
-import { handleError, reactive } from 'vue'
+import { reactive } from 'vue'
 
 import formLogo from '@/assets/icons/form-logo.svg'
 import formPerson from '@/assets/icons/form-person.png'
@@ -25,7 +25,7 @@ const validateForm = () => {
     errors.phone = 'Введите корректный номер телефона'
   }
 
-  errors.consent = !formData.consent
+  errors.consent = !form.consent
     ? 'Пожалуйста, дайте согласие на обработку персональных данных.'
     : ''
 
@@ -114,7 +114,15 @@ const handleSubmit = () => {
     </div>
 
     <div class="contact-banner__image-wrap" aria-hidden="true">
-      <img class="contact-banner__image" :src="formPerson" alt="" />
+    <img
+      class="contact-banner__image"
+      :src="formPerson"
+      alt=""
+      width="490"
+      height="310"
+      loading="lazy"
+      decoding="async"
+    />
     </div>
   </section>
 </template>
