@@ -1,58 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Prof IT backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel backend для проекта Prof IT. Сейчас backend содержит базовое Laravel-приложение, SQLite-настройку для локальной разработки и простую Filament-админку.
 
-## About Laravel
+## Стек
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Laravel 13
+- PHP 8.5
+- SQLite для локальной разработки
+- Filament 5
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Установка
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```sh
+composer install
+copy .env.example .env
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Если в локальном PHP выключен `pdo_sqlite`, используйте artisan-команды так:
 
-## Contributing
+```sh
+php -d extension=pdo_sqlite artisan about
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## База данных
 
-## Code of Conduct
+Проект настроен на SQLite:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```env
+DB_CONNECTION=sqlite
+```
 
-## Security Vulnerabilities
+Локальный файл базы:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```text
+database/database.sqlite
+```
 
-## License
+Файл базы игнорируется git и не коммитится.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Создать файл базы и выполнить миграции:
+
+```sh
+php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
+php -d extension=pdo_sqlite artisan migrate
+```
+
+## Админ-панель
+
+Filament доступен по адресу:
+
+```text
+/admin
+```
+
+Локальная тестовая учетная запись, созданная для проверки:
+
+```text
+email: admin@example.com
+password: password
+```
+
+Пользователь хранится только в локальной SQLite-базе, сама база не коммитится.
+
+Создать администратора заново:
+
+```sh
+php -d extension=pdo_sqlite artisan make:filament-user --name="Admin" --email="admin@example.com" --password="password" --panel=admin
+```
+
+## Запуск
+
+Если `pdo_sqlite` включен в `php.ini`, можно использовать обычный Laravel server:
+
+```sh
+php artisan serve
+```
+
+Если `pdo_sqlite` выключен, запускайте встроенный PHP-сервер напрямую:
+
+```sh
+php -d extension=pdo_sqlite -S 127.0.0.1:8001 -t public public/index.php
+```
+
+После запуска:
+
+```text
+http://127.0.0.1:8001/admin/login
+```
+
+## Проверки
+
+```sh
+php -d extension=pdo_sqlite artisan about
+php -d extension=pdo_sqlite artisan migrate
+php -d extension=pdo_sqlite artisan test
+php -d extension=pdo_sqlite artisan filament:about
+```
+
+Проверить страницу входа:
+
+```sh
+curl -I http://127.0.0.1:8001/admin/login
+```
+
+Ожидаемый результат: `HTTP/1.1 200 OK`.
+
+## Git
+
+Не коммитятся:
+
+- `.env`
+- `database/database.sqlite`
+- `vendor/`
+- runtime-кеши и логи Laravel
+
+Рабочая ветка backend:
+
+```text
+backend/dev
+```
+
+Push из этой ветки выполняется отдельно вручную, только когда backend готов к публикации.
