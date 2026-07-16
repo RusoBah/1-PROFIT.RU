@@ -51,3 +51,13 @@ Desktop.ini
 .npm/
 .yarn/
 .pnpm-store/
+
+# Laravel / backend local artifacts
+*/vendor/
+*/database/*.sqlite*
+*/storage/logs/*.log
+*/storage/framework/cache/data/*
+*/storage/framework/sessions/*
+*/storage/framework/views/*
+*/bootstrap/cache/*.php
+backend/DEPLOYMENT_HISTORY.md
